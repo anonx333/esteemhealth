@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esteem Health Solutions</title>
+    <title>Join Us!</title>
     <!-- css link -->
     <!-- favicon icon -->
     <link rel="favicon icon" type="images/png" href="images/favicon.png" />
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- slider css -->
     <link rel="stylesheet" href="css/slider-def.css"> 
+    <!-- raleway font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <!-- css link -->
 </head>
 
@@ -63,9 +65,10 @@
         <!-- navigation area end -->
     </header>
     <!-- header area end -->
+
     <!-- hero area start -->
-    <section class="hero-area" id="home" style="z-index:0">
-        <div id="slider">
+    <section class="hero-area" id="home" style="padding-bottom: 0px;">
+        <div id="slider" style="height: 300px">
             <div class="slides">
                <!-- First slide --> 
                <div class="slider">
@@ -93,77 +96,41 @@
                </div>
             </div>
          </div>
+         <div style="text-align: center;font-size: 30px; color:#005c53;    font-weight: 600;">
+            Join Our Team
+        </div>
     </section>
     <!-- hero area -->
     <!-- our services area -->
-    <section id="services-area" class="our-services-area" style="margin-top: -650px;">
+    <section id="team" class="our-services-area about-area">
         <div class="container">
-            <div class="row d-flex justify-content-center services-item-row" data-wow-duration="0s" data-wow-delay="0.2s">
-                <div class="col-12 section-title">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-3 col-3"></div>
-                        <div class="col-lg-4 col-sm-6 col-6" >
-                            <img src="images/logo/title_logo.png" alt="EHS LOGO">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12  services-carousel  owl-carousel">
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/nurse.png" alt="car cleaning image">
-                            </div>
-                            <h4><a href="#">Nursing Solutions</a></h4>
-                            <p>We are a team of Registered Nurses, carer, catering and maintenance staff ,  Our services are covering staff leaves, filling gaps between appointments and replacement of last minute sick calls.</p>
-                        </div>
-                    </div>
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/old.png" alt="room cleaning image">
-                            </div>
-                            <h4><a href="#">Aged care / Home Care</a></h4>
-                            <p>Something about Aged Care</p>
-                        </div>
-                    </div>
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/disable.png" alt="glass cleaning image">
-                            </div>
-                            <h4><a href="#">Disability Sector</a></h4>
-                            <p>Something about disability sector</p>
-                            <a href="#" class="read-more-btn">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row services-top-row">
                 <div class="col-12">
                     <div class="wow animate__animated" data-wow-duration="1.5s">
-                        <form id="contact-form" class="atf-contact-form" method="POST" action="php/find-more-mail.php">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <h4>Want to find out more ?</h4>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-0">
+                                <div class="about-img">
+                                    <img src="images/join_team.png"> 
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <input class="email-input" name="email" type="email" placeholder="valid email Address*" required="">
-                                </div>
-                                <div class="col-4">
-                                    <button type="submit" class="btn-button btn-h ">Contact Us</button>
-                                </div>
+                            <div class="col-lg-6 col-sm-12 about-text">
+                                <p>
+                                    Are u looking for an employment opportunity in the health care sector, if yes- this is a place to  start your career.
+ 
+                                    We are looking for 
+                                </p>
+                                <ul>
+                                    <li>Registered Nurses</li>
+                                    <li>Enrolled nurses</li>
+                                    <li>Care Staff</li>
+                                    <li>General Services  ( Maintenance , catering , cleaning and laundry )</li>
+                                </ul>
+                                <h5>Interested ?</h5>
+                                <p>Please click here to apply:</p>
+                                <button type="submit" class="btn-button btn-h " onclick="sendApplyMail()"><i class="fas fa-envelope"></i> Apply</button>
+                                    
                             </div>
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <p class="form-message"></p>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,6 +187,8 @@
     <script src="js/form-contact.js"></script>
     <!-- main js -->
     <script src="js/main.js"></script>
+    <!-- mail js -->
+    <script src="js/send-mail.js"></script>
     <!-- js link -->
 </body>
 

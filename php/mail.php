@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ERROR | E_PARSE);
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
@@ -52,4 +52,3 @@
     }
 
 ?>
-

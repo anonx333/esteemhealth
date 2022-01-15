@@ -85,7 +85,7 @@ Version      : 1.0
   box-sizing: border-box;
 }
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 15px;
   line-height: 1.8;
   color: #656565;
@@ -204,6 +204,7 @@ header.header-area .header-top-area {
   padding: 20px 0;
   position: relative;
   z-index: 999;
+  /* display: none; */
 }
 header.header-area .header-top-area .header-top-container {
   width: 100%;
@@ -273,12 +274,14 @@ header.header-area .header-top-area ul.header-top-social-right li a i {
   font-size: 17px;
 }
 header.header-area .navigation-area {
-  padding: 0 120px;
-  background: #FFFFFF;
+  padding: 0 350px;
+  background: #005c53;
   box-shadow: 0px 3px 16px -6px #e4e4e4;
   z-index: 99;
   left: 0;
   transition: .3s all;
+  color: white !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 header.header-area .navigation-area .navigation-container {
   position: relative;
@@ -305,7 +308,7 @@ header.header-area .navigation-area nav ul li a {
   font-family: 'Jost', sans-serif;
   text-transform: capitalize;
   padding: 45px 0;
-  color: #0E3C7B;
+  color: white !important;
   position: relative;
 }
 header.header-area .navigation-area nav ul li a::after {
@@ -368,7 +371,7 @@ div#sticky-wrapper {
 /*==================header-navigation-area-end====================*/
 /* 04 ==================hero-area-start====================*/
 section.hero-area {
-  padding: 350px 0 295px 0;
+  padding: 115px 0 227px 0;
   position: relative;
   z-index: 1;
 }
@@ -452,7 +455,7 @@ section.hero-area .hero-content .hero-btn-area .transfarent-btn:hover {
 .section-title h2 {
   font-weight: 500;
   font-size: 60px;
-  color: #0E3C7B;
+  color: #005c53;
   line-height: 1.2;
   margin-bottom: 25px;
   text-transform: capitalize;
@@ -476,13 +479,14 @@ section.hero-area .hero-content .hero-btn-area .transfarent-btn:hover {
 }
 .btn-h {
   padding: 10px 30px;
-  color: #FFFFFF;
-  background-image: linear-gradient(45deg, #0e3c7b, #0e3c7b) !important;
-  transition-timing-function: cubic-bezier(0.5, 1.6, 0.3, 0.5) !important;
+  color: #ffffff;
+  /* background-image: linear-gradient(45deg, #0e3c7b, #0e3c7b) !important; */
+  /* transition-timing-function: cubic-bezier(0.5, 1.6, 0.3, 0.5) !important; */
   background-size: 0% 100% !important;
   background-repeat: no-repeat !important;
   background-position: center left;
   transition: .5s all;
+  border: 0px;
 }
 .btn-h:hover {
   background-image: linear-gradient(45deg, #0e3c7b, #0e3c7b) !important;
@@ -582,19 +586,25 @@ section.project-area .project-area-container .tab-content-col .tab-pane p {
 /*==================project-area-end====================*/
 /* 06 ==================our-services-area-start====================*/
 section.our-services-area {
-  padding-top: 110px;
+  padding-top: 50px;
   padding-bottom: 40px;
+  background: #e8ecfa;
+  margin-top: -227px;
 }
 section.our-services-area .section-title {
-  text-align: left;
+  text-align: center;
   margin-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 50px;
+  max-width: 100%;
+  color: #005c53 !important;
+  text-shadow: 2px 2px 5px #ffffff;
 }
 section.our-services-area .services-carousel {
   margin: auto;
+  /* margin-top: -300px; */
 }
 section.our-services-area .services-carousel .owl-stage-outer {
-  padding-top: 70px;
+  padding-top: 0px;
   padding-bottom: 70px;
 }
 section.our-services-area .services-carousel .single-services-item {
@@ -607,6 +617,7 @@ section.our-services-area .services-carousel .single-services-item .image-area {
   margin: 0 auto;
   margin-bottom: 28px;
   padding: 10px;
+  border-radius: 20px;
 }
 section.our-services-area .services-carousel .single-services-item .image-area img {
   position: relative;
@@ -617,9 +628,10 @@ section.our-services-area .services-carousel .single-services-item .single-servi
   text-align: center;
   box-shadow: 0px 1px 9px 0px #e8e8e8;
   background: #FFFFFF;
-  padding: 70px 30px;
+  padding: 50px 30px;
   transition: .5s all;
   border-radius: 20px;
+  min-height: 450px;
 }
 section.our-services-area .services-carousel .single-services-item .single-services-content:hover {
   box-shadow: 0px 4px 14px 2px #d8d8d8;
@@ -721,6 +733,51 @@ section.our-services-area .services-carousel .owl-nav button:hover {
 section.our-services-area .services-carousel .owl-nav button span {
   display: none !important;
 }
+
+section.our-services-area input {
+  width: 100%;
+  border: 1px solid #b7b7b7;
+  height: 55px;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+section.about-area {
+  min-height: 450px;
+  margin-top: 0px;
+}
+
+section.about-area .about-img {
+  padding: 0 30px 30px 30px;
+}
+
+section.about-area .about-img img {
+  border-radius: 20px;
+}
+
+section.about-area h3 {
+  color:#005c53;
+}
+
+section.about-area h1 {
+  text-align: center;
+}
+
+section.about-area .about-text {
+  padding: 0 30px 0 30px;
+}
+
+section.about-area .about-text ul{
+  padding-left: 20px;
+  list-style: disc;
+  margin-bottom: 1rem;
+}
+
+section.about-area .about-text ul li{
+  color:#005c53;
+}
+
 /*==================our-services-area-end====================*/
 /* 07 ==================work-area-start====================*/
 section.work-area {
@@ -787,15 +844,25 @@ section.work-area .single-progress-bar .progress .progress-bar {
 }
 /*==================work-area-end====================*/
 /* 08 ==================contact-area-start====================*/
+p.form-message {
+  color: #28a745;
+}
+
+p.form-message.error {
+  color:red;
+}
+
 section.contact-area {
-  margin-bottom: -120px;
+  margin-bottom: -50px;
+  margin-top: -150px;
+  background: #e8ecfa;
 }
 section.contact-area .contact-area-row {
   top: -120px;
   position: relative;
 }
 section.contact-area .contact-form-col {
-  padding-right: 0;
+  /* padding-right: 0; */
 }
 section.contact-area .contact-img-col {
   padding-left: 0;
@@ -803,10 +870,21 @@ section.contact-area .contact-img-col {
 section.contact-area form {
   box-shadow: 0px 0px 20px -8px #757575;
   background: #FFFFFF;
-  padding: 90px 50px 120px 50px;
-  border-radius: 20px 0 0 20px;
+  padding: 60px 50px 60px 50px;
+  border-radius: 20px 20px 20px 20px;
   height: 100%;
 }
+
+section.contact-area form .contact-input{
+  padding-right: 50px;
+}
+
+section.contact-area form .contact-detail{
+  padding-left: 50px;
+  padding-top: 100px;
+  border-left: 1px #e0e0e0 solid;
+}
+
 section.contact-area form h3 {
   font-size: 36px;
   font-weight: 500;
@@ -830,7 +908,7 @@ section.contact-area form input {
   width: 100%;
   border: 1px solid #b7b7b7;
   height: 55px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding: 15px;
   border-radius: 10px;
 }
@@ -847,7 +925,7 @@ section.contact-area form textarea {
   height: 180px;
   border: 1px solid #b7b7b7;
   resize: none;
-  margin-bottom: 52px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 section.contact-area form textarea::placeholder {
@@ -864,7 +942,9 @@ section.contact-area .contact-img {
   position: relative;
   border-radius: 0 20px 20px 0;
   overflow: hidden;
-  box-shadow: 0px 0px 20px -8px #757575;
+  box-shadow: 10px 0px 20px -8px #757575;
+  border-left: 1px solid #e0e0e0;
+  /* box-shadow: 0px 0px 20px -8px #757575; */
 }
 section.contact-area .contact-img img {
   width: 100%;
@@ -876,10 +956,11 @@ section.contact-area .contact-img::after {
   content: "";
   width: 100%;
   height: 100%;
-  background: #00C55E;
+  background: #ffffff;
   left: 0;
   top: 0;
-  opacity: 0.2;
+  opacity: 1;
+  color:#28a745;
 }
 /*==================contact-area-end====================*/
 /* 09 ==================latest-news-area-start====================*/
@@ -1106,8 +1187,8 @@ section.testimonial-area .testimonial-carousel .testimonial-single-item p {
 /*==================testimonial-area-end====================*/
 /* 11 ==================footer-area-start====================*/
 footer.footer-area {
-  background: #34267A;
-  padding-top: 100px;
+  background: #ffffff;
+  /* padding-top: 100px; */
   color: #F8F8F8;
   position: relative;
 }
@@ -1266,10 +1347,10 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
 }
 /*==================footer-copy-right-area-start====================*/
 .footer-copyright {
-  background: #00C55E;
+  background: #005c53;
   padding-top: 18px;
   padding-bottom: 18px;
-  margin-top: 70px;
+  /* margin-top: 70px; */
 }
 .footer-copyright ul li {
   display: inline-block;
@@ -1306,7 +1387,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
 /*** Responsive Styles Standard Desktop Only ***/
 @media all and (max-width: 1600px) {
   section.hero-area {
-    padding: 350px 0 150px 0;
+    padding: 115px 0 150px 0;
   }
   section.hero-area::after {
     width: 790px;
@@ -1441,7 +1522,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     left: 0;
   }
   .navigation-area .slicknav_menu .slicknav_nav nav ul {
-    background: #212121;
+    background: #484848;
     margin-left: 0;
     padding: 15px 0;
   }
@@ -1497,7 +1578,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     background: #28A228;
   }
   section.hero-area {
-    padding: 270px 0 70px 0;
+    padding: 70px 0 70px 0;
   }
   section.hero-area::after {
     display: none;
@@ -1601,6 +1682,9 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     max-width: 750px;
     margin: auto;
   }
+  section.our-services-area .services-top-row {
+    padding-top: 50px;
+  }
   section.our-services-area .services-carousel .owl-stage-outer {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -1684,7 +1768,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     padding: 30px 0;
   }
   footer.footer-area {
-    padding-top: 50px;
+    padding-top: 0px;
   }
   footer.footer-area .footer-row {
     max-width: 750px;
@@ -1724,7 +1808,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     margin-bottom: 30px;
   }
   .footer-copyright {
-    margin-top: 30px;
+    /* margin-top: 30px; */
   }
   .footer-copyright ul {
     width: 100%;
@@ -1754,7 +1838,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
     top: 149px;
   }
   section.hero-area {
-    padding: 270px 0 50px 0;
+    padding: 70px 0 50px 0;
   }
   section.hero-area .hero-image-area {
     margin-bottom: 40px;

@@ -29,11 +29,11 @@
         // -----------------services-owl-carousel---------
         $('.services-carousel').owlCarousel({
             items: 3,
-            loop: true,
-            autoplay: true,
+            loop: false,
+            autoplay: false,
             autoplayHoverPause: true,
-            nav: true,
-            dots: false,
+            nav: false,
+            dots: true,
             autoplaySpeed: 3000,
             smartSpeed: 2000,
             Speed: 500,

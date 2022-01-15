@@ -16,6 +16,10 @@ $(function() {
 
 		// Serialize the form data.
 		var formData = $(form).serialize();
+        $(formMessages).removeClass('error');
+        $(formMessages).text('');
+
+        $('.loader-bg').fadeIn();
 
 		// Submit the form using AJAX.
 		$.ajax({
@@ -33,6 +37,7 @@ $(function() {
 
 			// Clear the form.
 			$('#contact-form input,#contact-form textarea').val('');
+            $('.loader-bg').fadeOut();
 		})
 		.fail(function(data) {
 			// Make sure that the formMessages div has the 'error' class.
@@ -45,6 +50,7 @@ $(function() {
 			} else {
 				$(formMessages).text('Oops! An error occured and your message could not be sent.');
 			}
+            $('.loader-bg').fadeOut();
 		});
 	});
 

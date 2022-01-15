@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esteem Health Solutions</title>
+    <title>Contact Us</title>
     <!-- css link -->
     <!-- favicon icon -->
     <link rel="favicon icon" type="images/png" href="images/favicon.png" />
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- slider css -->
     <link rel="stylesheet" href="css/slider-def.css"> 
+    <!-- raleway font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <!-- css link -->
 </head>
 
@@ -64,8 +66,8 @@
     </header>
     <!-- header area end -->
     <!-- hero area start -->
-    <section class="hero-area" id="home" style="z-index:0">
-        <div id="slider">
+    <section class="hero-area" id="home" style="padding-bottom: 0px; z-index: 0;">
+        <div id="slider" style="height: 300px">
             <div class="slides">
                <!-- First slide --> 
                <div class="slider">
@@ -95,81 +97,39 @@
          </div>
     </section>
     <!-- hero area -->
-    <!-- our services area -->
-    <section id="services-area" class="our-services-area" style="margin-top: -650px;">
+    <!-- contact area -->
+    <section id="contact" class="contact-area">
         <div class="container">
-            <div class="row d-flex justify-content-center services-item-row" data-wow-duration="0s" data-wow-delay="0.2s">
-                <div class="col-12 section-title">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-3 col-3"></div>
-                        <div class="col-lg-4 col-sm-6 col-6" >
-                            <img src="images/logo/title_logo.png" alt="EHS LOGO">
+            <div class="row contact-area-row wow animate__animated animate__fadeInUp" data-wow-duration="1.5s">
+                <div class="col-lg-12 contact-form-col">
+                    <form id="contact-form" class="atf-contact-form" method="POST" action="php/mail.php">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 contact-input">
+                                <h3><i class="fas fa-envelope"></i> Contact EHS</h3>
+                                <input class="name-input" name="name" type="text" placeholder="Full name*" required>
+                                <input class="email-input" name="email" type="email" placeholder="Valid email Address*" required>
+                                <input type="text" name="subject" placeholder="Subject*" required>
+                                <textarea name="message" placeholder="Message*" required></textarea>
+                                <p class="form-message"></p>
+                                <button type="submit" class="btn-button btn-h">Submit</button>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 contact-detail">
+                                <h4> Head Office address:</h3>
+                                    10Flynn Circuit<br/>
+                                    Jordan springs NSW 2747<br/>
+                                    </br>
+                                    Contact: 0450563828<br/>
+                                    </br>
+                                    Email: admin@domainname.com.au</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12  services-carousel  owl-carousel">
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/nurse.png" alt="car cleaning image">
-                            </div>
-                            <h4><a href="#">Nursing Solutions</a></h4>
-                            <p>We are a team of Registered Nurses, carer, catering and maintenance staff ,  Our services are covering staff leaves, filling gaps between appointments and replacement of last minute sick calls.</p>
-                        </div>
-                    </div>
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/old.png" alt="room cleaning image">
-                            </div>
-                            <h4><a href="#">Aged care / Home Care</a></h4>
-                            <p>Something about Aged Care</p>
-                        </div>
-                    </div>
-                    <div class="single-services-item">
-                        <div class="single-services-content">
-                            <div class="image-area">
-                                <img src="images/logo/disable.png" alt="glass cleaning image">
-                            </div>
-                            <h4><a href="#">Disability Sector</a></h4>
-                            <p>Something about disability sector</p>
-                            <a href="#" class="read-more-btn">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row services-top-row">
-                <div class="col-12">
-                    <div class="wow animate__animated" data-wow-duration="1.5s">
-                        <form id="contact-form" class="atf-contact-form" method="POST" action="php/find-more-mail.php">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <h4>Want to find out more ?</h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <input class="email-input" name="email" type="email" placeholder="valid email Address*" required="">
-                                </div>
-                                <div class="col-4">
-                                    <button type="submit" class="btn-button btn-h ">Contact Us</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-0"></div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <p class="form-message"></p>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- our services area -->
+    <!-- contact area -->
+
     <!-- footer area -->
     <footer class="footer-area">
         <!-- footer copyright area -->
@@ -220,6 +180,8 @@
     <script src="js/form-contact.js"></script>
     <!-- main js -->
     <script src="js/main.js"></script>
+    <!-- mail js -->
+    <script src="js/send-mail.js"></script>
     <!-- js link -->
 </body>
 
