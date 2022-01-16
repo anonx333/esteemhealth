@@ -6,7 +6,7 @@
 
 	 try{
 		$emailAddress = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-		$to = "dignosloth@gmail.com";
+		$to = "info@kukhurikan.com";
 		$subject = "This is subject";
 
 		$message = $emailAddress;
