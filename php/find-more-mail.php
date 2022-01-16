@@ -1,5 +1,8 @@
 <?php
 	error_reporting(E_ERROR | E_PARSE);
+    ini_set('SMTP', "smtp.hostinger.com");
+    ini_set('smtp_port', "465");
+    ini_set('sendmail_from', "info@kukhurikan.com");
 
 	 try{
 		$emailAddress = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
