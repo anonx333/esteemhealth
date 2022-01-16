@@ -1,5 +1,9 @@
 <?php
 	error_reporting(E_ERROR | E_PARSE);
+    ini_set('SMTP', "smtp.hostinger.com");
+    ini_set('smtp_port', "465");
+    ini_set('sendmail_from', "info@kukhurikan.com");
+
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
@@ -30,10 +34,6 @@
         // Build the email headers.
         $email_headers = "From: $name <$email>";
 		
-		ini_set('SMTP', "server.com");
-		ini_set('smtp_port', "25");
-		ini_set('sendmail_from', "email@domain.com");
-
         // Send the email.
         if (mail($recipient, $email_content, $email_headers)) {
             // Set a 200 (okay) response code.
