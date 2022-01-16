@@ -1,33 +1,47 @@
 <?php
-	// error_reporting(E_ERROR | E_PARSE);
+	error_reporting(E_ERROR | E_PARSE);
     ini_set('SMTP', "smtp.hostinger.com");
     ini_set('smtp_port', "465");
     ini_set('sendmail_from', "info@kukhurikan.com");
 
-	 try{
-		$emailAddress = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-		$to = "info@kukhurikan.com";
-		$subject = "This is subject";
+    // Only process POST reqeusts.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the form fields and remove whitespace.
+        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+		$subject = "Interested in EHS!";
+        // Check that data was sent to the mailer.
+        if ( !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Set a 400 (bad request) response code and exit.
+            http_response_code(400);
+            echo "Please complete the form and try again.";
+            exit;
+        }
 
-		$message = $emailAddress;
-		$message .= "<h1>This is headline.</h1>";
+        // Set the recipient email address.
+        // FIXME: Update this to your desired email address.
+        $recipient = "info@kukhurikan.com";
 
-		$header = "From:abc@somedomain.com \r\n";
-		$header .= "Cc:afgh@somedomain.com \r\n";
-		$header .= "MIME-Version: 1.0\r\n";
-		$header .= "Content-type: text/html\r\n";
+        // Build the email content.
+        $email_content = "Email: $email\n\n";
 
-		if( mail ($to,$subject,$message,$header) ) {
-			http_response_code(200);
-			echo "Message sent successfully...";
-		}else {
-			http_response_code(500);
-			echo "Message could not be sent...";
-		}
-	}
-	 catch(e) {
-		http_response_code(403);
-		echo "Message could not be sent...";
-	}
-	 
+        // Build the email headers.
+        $email_headers = "From: $email";
+		
+        // Send the email.
+        if (mail($recipient,$subject,$email_content,$email_headers)) {
+            // Set a 200 (okay) response code.
+            http_response_code(200);
+            echo "Thank You! Your message has been sent.";
+        } else {
+            // Set a 500 (internal server error) response code.
+            http_response_code(500);
+            echo "Oops! Something went wrong and we couldn't send your message.";
+        }
+
+    } else {
+        // Not a POST request, set a 403 (forbidden) response code.
+        http_response_code(403);
+        echo "There was a problem with your submission, please try again.";
+    }
+
 ?>
