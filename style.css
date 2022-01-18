@@ -1677,6 +1677,7 @@ footer.footer-area .single-footer-item .footer-gallery a img:hover {
   section.our-services-area .section-title {
     margin: auto;
     text-align: center;
+    margin-top: -75px;
   }
   section.our-services-area .services-item-row {
     max-width: 750px;
