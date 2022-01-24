@@ -8,3 +8,5 @@ documents/
 *.log
 *.sql
 *.sqlite
+
+php/uploads/

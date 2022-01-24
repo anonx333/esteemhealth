@@ -27,8 +27,8 @@
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
         $recipient = "info@kukhurikan.com";
-
         $target_dir = "uploads/";
+
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
         // Full local path to file attachment

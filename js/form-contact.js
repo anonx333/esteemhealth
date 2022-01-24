@@ -16,6 +16,7 @@ $(function() {
 
 		// Serialize the form data.
 		var formData = $(form).serialize();
+
         $(formMessages).removeClass('error');
         $(formMessages).text('');
 
@@ -25,7 +26,10 @@ $(function() {
 		$.ajax({
 			type: 'POST',
 			url: $(form).attr('action'),
-			data: formData
+			data: new FormData(this),
+            cache :false,
+            processData : false,
+            contentType : false,
 		})
 		.done(function(response) {
 			// Make sure that the formMessages div has the 'success' class.
