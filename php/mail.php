@@ -1,5 +1,5 @@
 <?php
-	error_reporting(E_ERROR | E_PARSE);
+	// error_reporting(E_ERROR | E_PARSE);
     ini_set('SMTP', "smtp.hostinger.com");
     ini_set('smtp_port', "465");
     ini_set('sendmail_from', "info@kukhurikan.com");
@@ -68,8 +68,10 @@
         $nmessage .= $content."\r\n\r\n";
         $nmessage .= "--".$uid."--";
 
+        $subject = "Email from - ".$name;
+
         // Send the email.
-        if (mail($recipient,$subject,$email_content,$email_headers)) {
+        if (mail($recipient,$subject,$nmessage,$header)) {
             // Set a 200 (okay) response code.
             http_response_code(200);
             echo "Thank You! Your message has been sent.";
