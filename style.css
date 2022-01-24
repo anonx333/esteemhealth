@@ -628,10 +628,10 @@ section.our-services-area .services-carousel .single-services-item .single-servi
   text-align: center;
   box-shadow: 0px 1px 9px 0px #e8e8e8;
   background: #FFFFFF;
-  padding: 50px 30px;
+  padding: 30px 30px 10px 30px;
   transition: .5s all;
   border-radius: 20px;
-  min-height: 450px;
+  min-height: 480px;
 }
 section.our-services-area .services-carousel .single-services-item .single-services-content:hover {
   box-shadow: 0px 4px 14px 2px #d8d8d8;
@@ -654,6 +654,7 @@ section.our-services-area .services-carousel .single-services-item .single-servi
   font-weight: 400;
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1.5;
+  text-align: left;
 }
 section.our-services-area .services-carousel .single-services-item .single-services-content a.read-more-btn {
   font-weight: 500;
@@ -898,12 +899,28 @@ section.contact-area form .name-email-input input {
   width: 48%;
   float: left;
 }
+
+section.contact-area form .contact-available-input input {
+  width: 48%;
+  float: left;
+}
+
 section.contact-area form .name-email-input input.name-input {
   float: left;
 }
+
+section.contact-area form .contact-available-input input.contact-input {
+  float: left;
+}
+
 section.contact-area form .name-email-input input.email-input {
   float: right;
 }
+
+section.contact-area form .contact-available-input input.availability-input {
+  float: right;
+}
+
 section.contact-area form input {
   width: 100%;
   border: 1px solid #b7b7b7;

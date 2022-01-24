@@ -102,13 +102,20 @@
         <div class="container">
             <div class="row contact-area-row wow animate__animated animate__fadeInUp" data-wow-duration="1.5s">
                 <div class="col-lg-12 contact-form-col">
-                    <form id="contact-form" class="atf-contact-form" method="POST" action="php/mail.php">
+                    <form id="contact-form" class="atf-contact-form" method="POST" action="php/mail.php" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 contact-input">
                                 <h3><i class="fas fa-envelope"></i> Contact EHS</h3>
                                 <input class="name-input" name="name" type="text" placeholder="Full name*" required>
                                 <input class="email-input" name="email" type="email" placeholder="Valid email Address*" required>
-                                <input type="text" name="subject" placeholder="Subject*" required>
+                                <div class="contact-available-input">
+                                    <input class="contact-input" name="contact" type="text" placeholder="Contact Details*" required>
+                                    <input class="availability-input" name="availability" type="text" placeholder="Availability*" required>
+                                </div>
+                                <div class="label-file">
+                                    <label for="fileToUpload">Upload Resume</label>
+                                    <input type="file" name="fileToUpload" id="fileToUpload" accept=".doc,.docx,.pdf">
+                                </div>
                                 <textarea name="message" placeholder="Message*" required></textarea>
                                 <p class="form-message"></p>
                                 <button type="submit" class="btn-button btn-h">Submit</button>
