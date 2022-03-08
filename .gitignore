@@ -9,4 +9,8 @@ documents/
 *.sql
 *.sqlite
 
+.env
+
 php/uploads/
+
+php/vendor/

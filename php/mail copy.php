@@ -1,27 +1,23 @@
 <?php
-	// error_reporting(E_ERROR | E_PARSE);
-    require 'cred.php';
-    require 'vendor/autoload.php';
-    use PHPMailer\PHPMailer\PHPMailer;
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
+    require('credential.php');
+	error_reporting(E_ERROR | E_PARSE);
+    require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+    
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        $mail = new PHPMailer;
+        $mail = new PHPMailer(true);
         $mail->isSMTP();
-        $mail->Host = $smtp['host'];
-        $mail->Port = $smtp['port'];
-        $mail->SMTPSecure = $smtp['smtpSecure'];
-        $mail->SMTPAuth = $smtp['smtpAuth'];
-        $mail->Username = $smtp['email'];
-        $mail->Password = $smtp['password'];
-        $mail->SetFrom('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->addAddress('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->SMTPDebug  = 3;
-        $mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; 
-        $mail->Debugoutput = 'echo';
+        $mail->Host = $smtp->host;
+        $mail->Port       = $smtp->port;
+        $mail->SMTPSecure = $smtp->smtpSecure;
+        $mail->SMTPAuth   = $smtp->smtpAuth;
+        $mail->Username = $smtp->email;
+        $mail->Password = $smtp->password;
+        $mail->SetFrom('admin@esteemhealthsolutions.com.au', 'FromEmail');
+        $mail->addAddress('admin@esteemhealthsolutions.com.au', 'ToEmail');
+        //$mail->SMTPDebug  = 3;
+        //$mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; //$mail->Debugoutput = 'echo';
         $mail->IsHTML(true);
 
         // Get the form fields and remove whitespace.
@@ -44,7 +40,7 @@ ini_set('display_startup_errors', 1);
         // FIXME: Update this to your desired email address.
         $target_dir = "uploads/";
 
-        $target_file = $target_dir.time()."_".basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
         // Full local path to file attachment
         $file = $_FILES["fileToUpload"]["tmp_name"];

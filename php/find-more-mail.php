@@ -4,6 +4,8 @@
     ini_set('smtp_port', "465");
     ini_set('sendmail_from', "info@kukhurikan.com");
 
+    $recipient = "info@kukhurikan.com";
+
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
@@ -19,7 +21,6 @@
 
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
-        $recipient = "info@kukhurikan.com";
 
         // Build the email content.
         $email_content = "Email: $email\n\n";

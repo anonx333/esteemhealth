@@ -1,28 +1,14 @@
 <?php
-	// error_reporting(E_ERROR | E_PARSE);
-    require 'cred.php';
-    require 'vendor/autoload.php';
-    use PHPMailer\PHPMailer\PHPMailer;
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+	error_reporting(E_ERROR | E_PARSE);
+    ini_set('SMTP', "smtp.hostinger.com");
+    ini_set('smtp_port', "465");
+    ini_set('sendmail_from', "info@kukhurikan.com");
+
+    $recipient = "info@kukhurikan.com";
 
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->Host = $smtp['host'];
-        $mail->Port = $smtp['port'];
-        $mail->SMTPSecure = $smtp['smtpSecure'];
-        $mail->SMTPAuth = $smtp['smtpAuth'];
-        $mail->Username = $smtp['email'];
-        $mail->Password = $smtp['password'];
-        $mail->SetFrom('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->addAddress('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->SMTPDebug  = 3;
-        $mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; 
-        $mail->Debugoutput = 'echo';
-        $mail->IsHTML(true);
+
 
         // Get the form fields and remove whitespace.
         $name = strip_tags(trim($_POST["name"]));
@@ -44,28 +30,55 @@ ini_set('display_startup_errors', 1);
         // FIXME: Update this to your desired email address.
         $target_dir = "uploads/";
 
-        $target_file = $target_dir.time()."_".basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
         // Full local path to file attachment
         $file = $_FILES["fileToUpload"]["tmp_name"];
         $filename = $_FILES["fileToUpload"]["name"];
 
-
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.\n";
-            
-            $mail->Subject = "Email from - ".$name;
-            $mail->addAttachment($target_file, $filename);
-            $nmessage = "Name: $name\n";
+
+            // File contents
+            $content = file_get_contents($target_file);
+            $content = chunk_split(base64_encode($content));
+            $uid = md5(uniqid(time()));
+
+            // Headers for email
+            $header = "From: ".$name." <".$email.">\r\n";
+            $header .= "Reply-To: ".$recipient."\r\n";
+            $header .= "MIME-Version: 1.0\r\n";
+            $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"\r\n\r\n";
+
+            // Build the email content.
+            $email_content = "Name: $name\n";
+            $email_content .= "Email: $email\n\n";
+            $email_content .= "Contact: $contact\n";
+            $email_content .= "Availability: $availability\n";
+            $email_content .= "Message:\n$message\n";
+                    
+
+            // Messages and attachment
+            $nmessage = "--".$uid."\r\n";
+            $nmessage .= "Content-type:text/plain; charset=iso-8859-1\r\n";
+            $nmessage .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+            $nmessage .= "Name: $name\n";
             $nmessage .= "Email: $email\n\n";
             $nmessage .= "Contact: $contact\n";
             $nmessage .= "Availability: $availability\n";
             $nmessage .= "Message:\n$message\n";
+            $nmessage .= "\r\n\r\n";
+            $nmessage .= "--".$uid."\r\n";
+            $nmessage .= "Content-Type: application/octet-stream; name=\"".$filename."\"\r\n";
+            $nmessage .= "Content-Transfer-Encoding: base64\r\n";
+            $nmessage .= "Content-Disposition: attachment; filename=\"".$filename."\"\r\n\r\n";
+            $nmessage .= $content."\r\n\r\n";
+            $nmessage .= "--".$uid."--";
 
-            $mail->Body = $nmessage;
+            $subject = "Email from - ".$name;
 
             // Send the email.
-            if ($mail->send()) {
+            if (mail($recipient,$subject,$nmessage,$header)) {
                 // Set a 200 (okay) response code.
                 http_response_code(200);
                 echo "Thank You! Your message has been sent.";
