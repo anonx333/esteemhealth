@@ -1,5 +1,4 @@
 <?php
-
     function reArrayFiles(&$file_post) {
 
         $file_ary = array();
@@ -15,30 +14,18 @@
         return $file_ary;
     }
 
-	// error_reporting(E_ERROR | E_PARSE);
-    require 'cred.php';
-    require 'vendor/autoload.php';
-    use PHPMailer\PHPMailer\PHPMailer;
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+	error_reporting(E_ERROR | E_PARSE);
+    ini_set('SMTP', "smtp.hostinger.com");
+    ini_set('smtp_port', "465");
+    ini_set('sendmail_from', "admin@esteemhealthsolutions.com");
+
+    
+    // Set the recipient email address.
+    // FIXME: Update this to your desired email address.
+    $recipient = "dingosloth@gmail.com";
 
     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->Host = $smtp['host'];
-        $mail->Port = $smtp['port'];
-        $mail->SMTPSecure = $smtp['smtpSecure'];
-        $mail->SMTPAuth = $smtp['smtpAuth'];
-        $mail->Username = $smtp['email'];
-        $mail->Password = $smtp['password'];
-        $mail->SetFrom('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->addAddress('admin@esteemhealthsolutions.com.au', 'Admin');
-        $mail->SMTPDebug  = 3;
-        $mail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";}; 
-        $mail->Debugoutput = 'echo';
-        $mail->IsHTML(true);
 
         // Get the form fields and remove whitespace.
         $name = strip_tags(trim($_POST["name"]));
@@ -56,22 +43,21 @@ ini_set('display_startup_errors', 1);
             exit;
         }
 
-        // Set the recipient email address.
-        // FIXME: Update this to your desired email address.
-        $target_dir = "uploads/";
+        $uid = md5(uniqid(time()));
 
-        $file_ary = reArrayFiles($_FILES['fileToUpload']);
+        $subject = "Email from - ".$name;
 
-        $mail->Subject = "Email from - ".$name;
-        $nmessage = "Name: $name\n";
+        $nmessage = "--".$uid."\r\n";
+        $nmessage .= "Content-type:text/plain; charset=iso-8859-1\r\n";
+        $nmessage .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+        $nmessage .= "Name: $name\n";
         $nmessage .= "Email: $email\n\n";
         $nmessage .= "Contact: $contact\n";
         $nmessage .= "Availability: $availability\n";
         $nmessage .= "Message:\n$message\n";
+        $nmessage .= "\r\n\r\n";
 
-        $mail->Body = $nmessage;
-
-        $file_upload_status = true;
+        $target_dir = "uploads/";
 
         foreach ($file_ary as $file) {
             $target_file = $target_dir.time()."_".basename($file["name"]);
@@ -81,7 +67,19 @@ ini_set('display_startup_errors', 1);
             try{
                 move_uploaded_file($file["tmp_name"], $target_file);
                 echo "File ". htmlspecialchars( basename( $file["name"])). " has been uploaded.\n";
-                $mail->addAttachment($target_file, $filename);
+                $content = file_get_contents($target_file);
+                $content = chunk_split(base64_encode($content));
+
+                $nmessage .= implode("\r\n", [
+                    "",
+                    "--$uid",
+                    "Content-Type: application/octet-stream; name=\"". basename($filename) . "\"",
+                    "Content-Transfer-Encoding: base64",
+                    "Content-Disposition: attachment",
+                    "",
+                    $content,
+                    "--$uid"
+                  ]);
             }
             catch(Exception $ex){
                 http_response_code(403);
@@ -92,20 +90,19 @@ ini_set('display_startup_errors', 1);
             }
         }
 
-        if($file_upload_status){
-            if ($mail->send()) {
-                // Set a 200 (okay) response code.
-                http_response_code(200);
-                echo "Thank You! Your message has been sent.";
-            } else {
-                // Set a 500 (internal server error) response code.
-                http_response_code(500);
-                echo "Oops! Something went wrong and we couldn't send your message.";
-            }
+        $nmessage.= "--";
+        // Send the email.
+        if (mail($recipient,$subject,$nmessage,$header)) {
+            // Set a 200 (okay) response code.
+            http_response_code(200);
+            echo "Thank You! Your message has been sent.";
+        } else {
+            // Set a 500 (internal server error) response code.
+            http_response_code(500);
+            echo "Oops! Something went wrong and we couldn't send your message.";
         }
-        else{
-            return;
-        }
+
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
     } else {
         // Not a POST request, set a 403 (forbidden) response code.
