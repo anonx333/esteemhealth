@@ -102,8 +102,6 @@
             echo "Oops! Something went wrong and we couldn't send your message.";
         }
 
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
     } else {
         // Not a POST request, set a 403 (forbidden) response code.
         http_response_code(403);
