@@ -9,7 +9,7 @@ $smtp = [
 
 ];
 
-$official_recipient = 'admin@esteemhealthsolutions.com.au';
+$official_recipient = 'dingosloth@gmail.com';
 
 
 ?>

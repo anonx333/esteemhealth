@@ -1,4 +1,20 @@
 <?php
+
+    function reArrayFiles(&$file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+
+        return $file_ary;
+    }
+
 	// error_reporting(E_ERROR | E_PARSE);
     require 'cred.php';
     require 'vendor/autoload.php';
@@ -44,27 +60,39 @@ ini_set('display_startup_errors', 1);
         // FIXME: Update this to your desired email address.
         $target_dir = "uploads/";
 
-        $target_file = $target_dir.time()."_".basename($_FILES["fileToUpload"]["name"]);
+        $file_ary = reArrayFiles($_FILES['fileToUpload']);
 
-        // Full local path to file attachment
-        $file = $_FILES["fileToUpload"]["tmp_name"];
-        $filename = $_FILES["fileToUpload"]["name"];
+        $mail->Subject = "Email from - ".$name;
+        $nmessage = "Name: $name\n";
+        $nmessage .= "Email: $email\n\n";
+        $nmessage .= "Contact: $contact\n";
+        $nmessage .= "Availability: $availability\n";
+        $nmessage .= "Message:\n$message\n";
 
+        $mail->Body = $nmessage;
 
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.\n";
-            
-            $mail->Subject = "Email from - ".$name;
-            $mail->addAttachment($target_file, $filename);
-            $nmessage = "Name: $name\n";
-            $nmessage .= "Email: $email\n\n";
-            $nmessage .= "Contact: $contact\n";
-            $nmessage .= "Availability: $availability\n";
-            $nmessage .= "Message:\n$message\n";
+        $file_upload_status = true;
 
-            $mail->Body = $nmessage;
+        foreach ($file_ary as $file) {
+            $target_file = $target_dir.time()."_".basename($file["name"]);
+            $file_main = $file["tmp_name"];
+            $filename = $file["name"];
 
-            // Send the email.
+            try{
+                move_uploaded_file($file["tmp_name"], $target_file);
+                echo "File ". htmlspecialchars( basename( $file["name"])). " has been uploaded.\n";
+                $mail->addAttachment($target_file, $filename);
+            }
+            catch(Exception $ex){
+                http_response_code(403);
+                echo "Sorry, there was an error uploading file: ".htmlspecialchars( basename( $file["name"]));
+
+                $file_upload_status = false;
+                return;
+            }
+        }
+
+        if($file_upload_status){
             if ($mail->send()) {
                 // Set a 200 (okay) response code.
                 http_response_code(200);
@@ -74,9 +102,9 @@ ini_set('display_startup_errors', 1);
                 http_response_code(500);
                 echo "Oops! Something went wrong and we couldn't send your message.";
             }
-        } else {
-            http_response_code(403);
-            echo "Sorry, there was an error uploading your file.";
+        }
+        else{
+            return;
         }
 
     } else {
